@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Login</h1>
+    </header>
+    <section>
+        <form id="adminLoginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <a href="admin-register.html">Register here</a>.</p>
+    </section>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Simulate admin login with local storage (just for demonstration)
+            const registeredAdmins = JSON.parse(localStorage.getItem('registeredAdmins')) || [];
+
+            const admin = registeredAdmins.find(admin => admin.email === email && admin.password === password);
+
+            if (admin) {
+                alert('Login successful! Redirecting to admin dashboard...');
+                window.location.href = 'admin-dashboard.html'; // Redirect to admin dashboard
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
